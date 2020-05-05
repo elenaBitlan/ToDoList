@@ -1,0 +1,11 @@
+@import "~@angular/material/theming";
+
+@include mat-core();
+$ToDo-primary: mat-palette($mat-deep-purple);
+$ToDo-accent: mat-palette($mat-deep-purple, A200, A100, A300);
+
+$ToDo-warn: mat-palette($mat-red);
+
+$ToDo-theme: mat-light-theme($ToDo-primary, $ToDo-accent, $ToDo-warn);
+
+@include angular-material-theme($ToDo-theme);

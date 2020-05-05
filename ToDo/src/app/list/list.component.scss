@@ -1,0 +1,62 @@
+.card {
+  padding: 5%;
+  margin: 20px 0;
+}
+
+.form-card {
+  display: flex;
+  justify-content: center;
+}
+
+.form {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  &__field-group {
+    width: 90%;
+  }
+}
+
+.list {
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    max-width: 70%;
+
+    p {
+      margin: 10px;
+      width: 75%;
+      word-wrap: break-word !important;
+    }
+  }
+
+  &__btn {
+    background-color: unset;
+    margin: 5px;
+    border: unset;
+    color: #80808081;
+
+    :hover {
+      color: gray;
+    }
+  }
+}
+
+.unresolved {
+  text-decoration: unset;
+  color: black;
+}
+
+.resolved {
+  text-decoration: line-through;
+  color: rgba(0, 0, 0, 0.452);
+}
