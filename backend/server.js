@@ -18,9 +18,8 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Methods", "GET,POST,DELETE,PUT");
   next();
 });
-//pretifier problem
-mongoose
-  .connect("mongodb://localhost:27017/hellen")
+
+mongoose.connect("mongodb://localhost:27017/hellen")
   .then(() => {
     console.log(" succes");
   })

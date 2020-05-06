@@ -1,3 +1,9 @@
+.title {
+  font-size: 40px;
+  color: #673AB7;
+  font-weight: 100;
+}
+
 .card {
   padding: 5%;
   margin: 20px 0;
@@ -14,6 +20,7 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+
   &__field-group {
     width: 90%;
   }
@@ -30,7 +37,7 @@
     display: flex;
     align-items: center;
     padding: 15px 0;
-    max-width: 70%;
+    width: 75%;
 
     p {
       margin: 10px;
