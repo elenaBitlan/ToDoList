@@ -4,30 +4,21 @@
     <form (submit)="onTaskSave()" [formGroup]="form" class="form">
       <mat-form-field class="form__field-group">
         <mat-label></mat-label>
-        <textarea
-          matInput
-          formControlName="content"
-          class="form__input"
-        ></textarea>
+        <textarea matInput formControlName="content" class="form__input"></textarea>
       </mat-form-field>
       <button mat-stroked-button color="accent" class="form__btn">Add</button>
     </form>
   </mat-card>
 
-  <mat-card *ngIf="taskList" class="card">
+  <mat-card *ngIf="taskList.length" class="card">
     <ul class="list" *ngFor="let task of taskList">
       <li class="list__item">
         <div class="list__content">
-          <mat-checkbox
-            [checked]="task.resolved"
-            (click)="onTaskResolve(task)"
-          ></mat-checkbox>
-          <p
-            [ngClass]="{
+          <mat-checkbox [checked]="task.resolved" (click)="onTaskResolve(task)"></mat-checkbox>
+          <p [ngClass]="{
               resolved: task.resolved,
               unresolved: !task.resolved
-            }"
-          >
+            }">
             {{ task.content }}
           </p>
         </div>
@@ -37,6 +28,7 @@
           </span>
         </button>
       </li>
-      <mat-divider></mat-divider></ul
-  ></mat-card>
+      <mat-divider></mat-divider>
+    </ul>
+  </mat-card>
 </ng-container>
