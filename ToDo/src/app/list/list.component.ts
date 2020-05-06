@@ -3,7 +3,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { TaskManagementService } from '../task-management.service';
 import { Task, TaskContent } from './task.model';
-import { CdkObserveContent } from '@angular/cdk/observers';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -13,7 +12,7 @@ export class ListComponent implements OnInit {
   form: FormGroup;
   taskList: Task[] = [];
   isUpdated = true;
-  constructor(public taskService: TaskManagementService) {}
+  constructor(public taskService: TaskManagementService) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -29,11 +28,10 @@ export class ListComponent implements OnInit {
 
   onTaskSave() {
     const content = this.form.value.content;
-    if (!content) {
-      return;
-    } else if (!content.trim().length) {
+    if (!content || !content.trim().length) {
       return;
     }
+
     this.isUpdated = false;
     const taskContent = new TaskContent(this.form.value.content);
     this.taskService
