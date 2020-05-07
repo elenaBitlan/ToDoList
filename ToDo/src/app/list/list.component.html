@@ -1,34 +1,43 @@
-<h1 class="title">ToDo List</h1>
+<h1 class="title">Todos</h1>
 <ng-container *ngIf="isUpdated">
-  <mat-card class="card form-card">
-    <form (submit)="onTaskSave()" [formGroup]="form" class="form">
-      <mat-form-field class="form__field-group">
-        <mat-label></mat-label>
-        <textarea matInput formControlName="content" class="form__input"></textarea>
-      </mat-form-field>
-      <button mat-stroked-button color="accent" class="form__btn">Add</button>
+  <div class="card">
+    <form (keydown.enter)="onTaskSave()" [formGroup]="form" class="form">
+      <input
+        type="text"
+        formControlName="content"
+        class="form__input"
+        placeholder="What needs to be done?"
+      />
     </form>
-  </mat-card>
 
-  <mat-card *ngIf="taskList.length" class="card">
-    <ul class="list" *ngFor="let task of taskList">
-      <li class="list__item">
-        <div class="list__content">
-          <mat-checkbox [checked]="task.resolved" (click)="onTaskResolve(task)"></mat-checkbox>
-          <p [ngClass]="{
-              resolved: task.resolved,
-              unresolved: !task.resolved
-            }">
-            {{ task.content }}
-          </p>
-        </div>
-        <button class="list__btn" (click)="onTaskDelete(task)">
-          <span class="material-icons">
-            clear
-          </span>
-        </button>
-      </li>
-      <mat-divider></mat-divider>
-    </ul>
-  </mat-card>
+    <div class="list" *ngIf="taskList.length">
+      <ul *ngFor="let task of taskList">
+        <li class="list__item">
+          <div class="list__content">
+            <mat-checkbox
+              [checked]="task.resolved"
+              (click)="onTaskResolve(task)"
+              class="round"
+            ></mat-checkbox>
+            <p
+              [ngClass]="{
+                resolved: task.resolved,
+                unresolved: !task.resolved
+              }"
+            >
+              {{ task.content }}
+            </p>
+          </div>
+          <button class="list__btn" (click)="onTaskDelete(task)">
+            <span class="material-icons">
+              clear
+            </span>
+          </button>
+        </li>
+      </ul>
+      <div class="footer">
+        <p>{{ taskList.length }} items left</p>
+      </div>
+    </div>
+  </div>
 </ng-container>

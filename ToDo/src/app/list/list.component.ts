@@ -12,7 +12,7 @@ export class ListComponent implements OnInit {
   form: FormGroup;
   taskList: Task[] = [];
   isUpdated = true;
-  constructor(public taskService: TaskManagementService) { }
+  constructor(public taskService: TaskManagementService) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -41,6 +41,7 @@ export class ListComponent implements OnInit {
         this.form.reset();
         this.isUpdated = true;
       });
+    return 0;
   }
 
   onTaskDelete(task) {

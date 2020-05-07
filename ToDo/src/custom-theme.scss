@@ -2,7 +2,7 @@
 
 @include mat-core();
 $ToDo-primary: mat-palette($mat-deep-purple);
-$ToDo-accent: mat-palette($mat-deep-purple, A200, A100, A300);
+$ToDo-accent: mat-palette($mat-green, A200, A100, A300);
 
 $ToDo-warn: mat-palette($mat-red);
 

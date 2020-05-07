@@ -1,11 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap");
+
 @import "./custom-theme.scss";
+@import "./assets/variable";
 
 html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: #dec7fe;
+  background-color: $pastelGray;
 }
