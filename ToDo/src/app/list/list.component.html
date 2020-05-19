@@ -1,43 +1,22 @@
 <h1 class="title">Todos</h1>
-<ng-container *ngIf="isUpdated">
-  <div class="card">
-    <form (keydown.enter)="onTaskSave()" [formGroup]="form" class="form">
-      <input
-        type="text"
-        formControlName="content"
-        class="form__input"
-        placeholder="What needs to be done?"
-      />
-    </form>
+<div class="card">
+  <form (keydown.enter)="onTaskSave()" [formGroup]="form" class="form">
+    <input
+      type="text"
+      formControlName="content"
+      class="form__input"
+      placeholder="What needs to be done?"
+    />
+  </form>
 
+  <ng-container *ngIf="taskList$ | async as taskList">
     <div class="list" *ngIf="taskList.length">
-      <ul *ngFor="let task of taskList">
-        <li class="list__item">
-          <div class="list__content">
-            <mat-checkbox
-              [checked]="task.resolved"
-              (click)="onTaskResolve(task)"
-              class="round"
-            ></mat-checkbox>
-            <p
-              [ngClass]="{
-                resolved: task.resolved,
-                unresolved: !task.resolved
-              }"
-            >
-              {{ task.content }}
-            </p>
-          </div>
-          <button class="list__btn" (click)="onTaskDelete(task)">
-            <span class="material-icons">
-              clear
-            </span>
-          </button>
-        </li>
+      <ul *ngFor="let task of taskList; index as index">
+        <app-list-item [task]="task" [index]="index"></app-list-item>
       </ul>
       <div class="footer">
         <p>{{ taskList.length }} items left</p>
       </div>
     </div>
-  </div>
-</ng-container>
+  </ng-container>
+</div>

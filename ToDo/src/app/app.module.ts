@@ -9,13 +9,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { ListComponent } from './list/list.component';
-import { apiProvider } from './api.interceptor';
+import { ListItemComponent } from './list-item/list-item.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ListComponent
-  ],
+  declarations: [AppComponent, ListComponent, ListItemComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -24,9 +21,7 @@ import { apiProvider } from './api.interceptor';
     HttpClientModule,
     MatCheckboxModule,
   ],
-  providers: [
-    apiProvider,
-  ],
-  bootstrap: [AppComponent]
+  providers: [],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

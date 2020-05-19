@@ -1,27 +1,35 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
-import { Task, TaskContent } from './list/task.model';
+import { TaskInterface } from './list/task.model';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TaskManagementService {
-  constructor(private http: HttpClient) {}
+  private _tasks: BehaviorSubject<TaskInterface[]>;
 
-  getTasks() {
-    return this.http.get<{ message: string; tasks: Task[] }>('task');
+  constructor() {
+    this._tasks = new BehaviorSubject<TaskInterface[]>([]);
   }
 
-  addTask(task: TaskContent) {
-    return this.http.post('task', task);
+  get getTasks() {
+    return this._tasks.asObservable();
   }
 
-  removeTask(task) {
-    return this.http.delete('task/' + task._id);
+  addTask(task: TaskInterface): void {
+    this._tasks.next([...this._tasks.value, task]);
   }
 
-  updateTask(task) {
-    return this.http.put('task/' + task._id, task);
+  removeTask(task: TaskInterface): void {
+    this._tasks.next(
+      this._tasks.value.filter((oldTask) => oldTask.id !== task.id)
+    );
+  }
+
+  updateTask(task: TaskInterface, index: number) {
+    const tasks = [...this._tasks.value];
+    tasks[index] = task;
+    this._tasks.next(tasks);
   }
 }

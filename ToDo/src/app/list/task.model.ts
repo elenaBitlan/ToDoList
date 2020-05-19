@@ -1,6 +1,6 @@
 export class Task {
   constructor(
-    public _id: string,
+    public id: string,
     public content: string,
     public resolved: boolean
   ) {}
@@ -8,4 +8,10 @@ export class Task {
 
 export class TaskContent {
   constructor(public content: string) {}
+}
+
+export interface TaskInterface {
+  id: string;
+  content: string;
+  resolved: boolean;
 }

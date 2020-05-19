@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
+import { Observable } from 'rxjs';
+
 import { TaskManagementService } from '../task-management.service';
-import { Task, TaskContent } from './task.model';
+import { Task } from './task.model';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -10,7 +12,7 @@ import { Task, TaskContent } from './task.model';
 })
 export class ListComponent implements OnInit {
   form: FormGroup;
-  taskList: Task[] = [];
+  taskList$: Observable<Task[]>;
   isUpdated = true;
   constructor(public taskService: TaskManagementService) {}
 
@@ -21,42 +23,18 @@ export class ListComponent implements OnInit {
       }),
     });
 
-    this.taskService.getTasks().subscribe((response) => {
-      this.taskList = [...response.tasks];
-    });
+    this.taskList$ = this.taskService.getTasks;
   }
 
   onTaskSave() {
     const content = this.form.value.content;
-    if (!content || !content.trim().length) {
-      return;
+    if (content && content.trim().length) {
+      this.taskService.addTask({
+        id: Math.random().toString(),
+        content: this.form.value.content,
+        resolved: false,
+      });
+      this.form.reset();
     }
-
-    this.isUpdated = false;
-    const taskContent = new TaskContent(this.form.value.content);
-    this.taskService
-      .addTask(taskContent)
-      .subscribe((res: { message: string; task: Task }) => {
-        this.taskList.push(res.task);
-        this.form.reset();
-        this.isUpdated = true;
-      });
-    return 0;
-  }
-
-  onTaskDelete(task) {
-    this.taskService.removeTask(task).subscribe(() => {
-      this.taskList = this.taskList.filter((oldTask) => {
-        return oldTask._id !== task._id;
-      });
-    });
-  }
-
-  onTaskResolve(task) {
-    this.isUpdated = false;
-    task.resolved = !task.resolved;
-    this.taskService.updateTask(task).subscribe(() => {
-      this.isUpdated = true;
-    });
   }
 }

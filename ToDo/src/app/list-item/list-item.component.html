@@ -1,0 +1,22 @@
+<li class="list__item">
+  <div class="list__content">
+    <mat-checkbox
+      [checked]="task.resolved"
+      (click)="onTaskResolve(task, index)"
+      class="round"
+    ></mat-checkbox>
+    <p
+      [ngClass]="{
+        resolved: task.resolved,
+        unresolved: !task.resolved
+      }"
+    >
+      {{ task.content }}
+    </p>
+  </div>
+  <button class="list__btn" (click)="onTaskDelete(task)">
+    <span class="material-icons">
+      clear
+    </span>
+  </button>
+</li>

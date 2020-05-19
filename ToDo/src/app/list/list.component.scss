@@ -41,49 +41,6 @@
 .list {
   width: 100%;
   font-size: 24px;
-
-  ul {
-    padding: 0;
-    margin: 5px 0;
-    border-top: $roseGray solid 1px;
-  }
-
-  &__item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  &__content {
-    display: flex;
-    align-items: center;
-    padding: 15px;
-    width: 75%;
-    text-align: start;
-
-    p {
-      margin: 10px;
-      width: 75%;
-      word-wrap: break-word !important;
-    }
-  }
-
-  &__btn {
-    background-color: unset;
-    margin: 5px;
-    border: unset;
-    color: $roseGray;
-    visibility: hidden;
-    outline: none;
-
-    .material-icons {
-      font-size: 30px;
-    }
-  }
-
-  ul :hover &__btn {
-    visibility: visible;
-  }
 }
 
 .footer {
@@ -97,34 +54,10 @@
     0 20px 1px -9px rgba(0, 0, 0, 0.15);
 }
 
-.unresolved {
-  text-decoration: unset;
-  color: $softBlack;
-}
-
-.resolved {
-  text-decoration: line-through;
-  color: $faddedBlack;
-}
-
 :host {
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   font-family: "Quicksand", sans-serif;
-}
-
-::ng-deep .round {
-  margin: 0 10px;
-
-  & .mat-checkbox-background,
-  .mat-checkbox-frame {
-    border-radius: 70% !important;
-  }
-}
-
-mat-checkbox ::ng-deep .mat-checkbox-inner-container {
-  width: 30px;
-  height: 30px;
 }

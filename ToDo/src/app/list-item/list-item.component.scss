@@ -1,0 +1,74 @@
+@import "../../assets/variable";
+
+.list {
+  ul {
+    padding: 0;
+    margin: 5px 0;
+    border-top: $roseGray solid 1px;
+
+    :hover &__btn {
+      visibility: visible;
+    }
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    width: 75%;
+    text-align: start;
+
+    p {
+      margin: 10px;
+      width: 75%;
+      word-wrap: break-word !important;
+    }
+  }
+
+  &__btn {
+    background-color: unset;
+    margin: 5px;
+    border: unset;
+    color: $roseGray;
+    visibility: hidden;
+    outline: none;
+
+    .material-icons {
+      font-size: 30px;
+    }
+  }
+
+  :hover &__btn {
+    visibility: visible;
+  }
+}
+
+.unresolved {
+  text-decoration: unset;
+  color: $softBlack;
+}
+
+.resolved {
+  text-decoration: line-through;
+  color: $faddedBlack;
+}
+
+::ng-deep .round {
+  margin: 0 10px;
+
+  & .mat-checkbox-background,
+  .mat-checkbox-frame {
+    border-radius: 70% !important;
+  }
+}
+
+mat-checkbox ::ng-deep .mat-checkbox-inner-container {
+  width: 30px;
+  height: 30px;
+}
